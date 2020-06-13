@@ -7,29 +7,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
-    public TextView display;
-    private Button zero;
-    private Button one;
-    private Button two;
-    private Button three;
-    private Button four;
-    private Button five;
-    private Button six;
-    private Button seven;
-    private Button eight;
-    private Button nine;
-    private Button plus;
-    private Button minus;
-    private Button multiply;
-    private Button divide;
-    private Button delete;
+    public static TextView display;
+    private Button zero, one, two, three, four, five, six, seven, eight, nine;
+    private Button plus, minus, multiply, divide;
+    private Button delete, dot;
     private Button equal;
-    private Button dot;
 
-    public double number1;
-    public double number2;
-    public double result;
-    public String operand;
+    public double number1, number2;
+
+    public String operand = "";
+    public String sign;
+    public String request;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
                 if (display.getText().length()==1 && display.getText().equals("0")){
                     display.setText("");
                 }
+                if(operand.equals("plus")||operand.equals("minus")||
+                        operand.equals("multiply")||operand.equals("divide")||
+                        operand.equals("equal")){
+                    display.setText("");
+                    operand="";
+                }
                 display.setText(display.getText()+"0");
             }
         });
@@ -51,6 +45,12 @@ public class MainActivity extends AppCompatActivity {
                 if (display.getText().length()==1 && display.getText().equals("0")){
                     display.setText("");
                 }
+                if(operand.equals("plus")||operand.equals("minus")||
+                        operand.equals("multiply")||operand.equals("divide")||
+                        operand.equals("equal")){
+                    display.setText("");
+                    operand="";
+                }
                 display.setText(display.getText()+"1");
             }
         });
@@ -59,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (display.getText().length()==1 && display.getText().equals("0")){
                     display.setText("");
+                    operand="";
+                }
+                if(operand.equals("plus")||operand.equals("minus")||
+                        operand.equals("multiply")||operand.equals("divide")||
+                operand.equals("equal")){
+                    display.setText("");
+                    operand="";
                 }
                 display.setText(display.getText()+"2");
             }
@@ -69,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
                 if (display.getText().length()==1 && display.getText().equals("0")){
                     display.setText("");
                 }
+                if(operand.equals("plus")||operand.equals("minus")||
+                        operand.equals("multiply")||operand.equals("divide")||
+                        operand.equals("equal")){
+                    display.setText("");
+                    operand="";
+                }
                 display.setText(display.getText()+"3");
             }
         });
@@ -77,6 +90,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (display.getText().length()==1 && display.getText().equals("0")){
                     display.setText("");
+                }
+                if(operand.equals("plus")||operand.equals("minus")||
+                        operand.equals("multiply")||operand.equals("divide")||
+                        operand.equals("equal")){
+                    display.setText("");
+                    operand="";
                 }
                 display.setText(display.getText()+"4");
             }
@@ -87,6 +106,12 @@ public class MainActivity extends AppCompatActivity {
                 if (display.getText().length()==1 && display.getText().equals("0")){
                     display.setText("");
                 }
+                if(operand.equals("plus")||operand.equals("minus")||
+                        operand.equals("multiply")||operand.equals("divide")||
+                        operand.equals("equal")){
+                    display.setText("");
+                    operand="";
+                }
                 display.setText(display.getText()+"5");
             }
         });
@@ -95,6 +120,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (display.getText().length()==1 && display.getText().equals("0")){
                     display.setText("");
+                    operand="";
+                }
+                if(operand.equals("plus")||operand.equals("minus")||
+                        operand.equals("multiply")||operand.equals("divide")||
+                        operand.equals("equal")){
+                    display.setText("");
                 }
                 display.setText(display.getText()+"6");
             }
@@ -102,8 +133,14 @@ public class MainActivity extends AppCompatActivity {
         seven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (display.getText().length()==1 && display.getText().equals("0")){
+                if (display.getText().length()==1 && display.getText().equals("0")||
+                        operand.equals("equal")){
                     display.setText("");
+                }
+                if(operand.equals("plus")||operand.equals("minus")||
+                        operand.equals("multiply")||operand.equals("divide")){
+                    display.setText("");
+                    operand="";
                 }
                 display.setText(display.getText()+"7");
             }
@@ -114,6 +151,12 @@ public class MainActivity extends AppCompatActivity {
                 if (display.getText().length()==1 && display.getText().equals("0")){
                     display.setText("");
                 }
+                if(operand.equals("plus")||operand.equals("minus")||
+                        operand.equals("multiply")||operand.equals("divide")||
+                        operand.equals("equal")){
+                    display.setText("");
+                    operand="";
+                }
                 display.setText(display.getText()+"8");
             }
         });
@@ -123,13 +166,24 @@ public class MainActivity extends AppCompatActivity {
                 if (display.getText().length()==1 && display.getText().equals("0")){
                     display.setText("");
                 }
+                if(operand.equals("plus")||operand.equals("minus")||
+                        operand.equals("multiply")||operand.equals("divide")||
+                        operand.equals("equal")){
+                    display.setText("");
+                    operand="";
+                }
                 display.setText(display.getText()+"9");
             }
         });
         dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(operand.equals("plus")||operand.equals("minus")||
+                        operand.equals("multiply")||operand.equals("divide")||
+                        operand.equals("equal")){
+                    display.setText("");
+                    operand="";
+                }
                 display.setText(display.getText()+".");
             }
         });
@@ -137,63 +191,53 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 number1 = Double.parseDouble(String.valueOf(display.getText()));
-                display.setText("");
+                //display.setText("");
                 operand = "plus";
+                sign = operand;
             }
         });
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 number1 = Double.parseDouble(String.valueOf(display.getText()));
-                display.setText("");
+                //display.setText("");
                 operand = "minus";
+                sign = operand;
             }
         });
         multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 number1 = Double.parseDouble(String.valueOf(display.getText()));
-                display.setText("");
+                //display.setText("");
                 operand = "multiply";
+                sign = operand;
             }
         });
         divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 number1 = Double.parseDouble(String.valueOf(display.getText()));
-                display.setText("");
+                //display.setText("");
                 operand = "divide";
+                sign = operand;
             }
         });
         equal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                number2 = Double.parseDouble(String.valueOf(display.getText()));
-                if (operand.equals("plus")){
-                    result = number1 + number2;
-                    display.setText(String.valueOf(result));
-                }
-                else if (operand.equals("minus")){
-                    result = number1 - number2;
-                    display.setText(String.valueOf(result));
-                }
-                else if (operand.equals("multiply")){
-                    result = number1 * number2;
 
-                    display.setText(String.valueOf(result));
-                }
-                else if (operand.equals("divide")){
-
-                    result = number1 / number2;
-                   if (number2 == 0) {
-                       display.setText("Cannot divide by zero!");
-
-                    }
-                   else display.setText(String.valueOf(result));
-
+                if (Character.isDigit(display.getText().charAt(0)) ){
+                    number2 = Double.parseDouble(String.valueOf(display.getText()));
+                    operand = "equal";
                 }
 
+               String URL ="http://10.0.2.2:8080/calculate"; //to access local machine from emulator,
+               request = URL+"?number1="+number1+"&number2="+number2+"&sign="+sign;
 
+                CallingServlet myTask = new CallingServlet(MainActivity.this, request);
+                Thread t1 = new Thread(myTask, "Get connection");
+                t1.start();
             }
         });
         delete.setOnClickListener(new View.OnClickListener() {
@@ -201,6 +245,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 display.setText("0");
+                number1 = 0;
+                number2 = 0;
 
             }
         });
